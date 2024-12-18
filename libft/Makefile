@@ -6,7 +6,7 @@
 #    By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/21 22:09:06 by jyriarte          #+#    #+#              #
-#    Updated: 2024/08/21 22:18:31 by jyriarte         ###   ########.fr        #
+#    Updated: 2024/12/11 18:31:08 by jyriarte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,10 @@ all: $(NAME)
 
 clean:
 	$(RM) $(OBJECTS) $(BONUS_OBJECTS)
+
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SOURCES) $(BONUS)
+	gcc -nostartfiles -shared -o libft.so $(OBJECTS) $(BONUS_OBJECTS)
 
 fclean: clean
 	$(RM) $(NAME) 
