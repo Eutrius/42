@@ -12,62 +12,51 @@
 
 #include "get_next_line.h"
 
-void	ft_lstadd_back(t_list *head, t_list *new_node)
-{
-	t_list	*buffer;
-
-	buffer = head;
-	while (buffer->next != NULL)
-	{
-		buffer = buffer->next;
-	}
-	buffer->next = new_node;
-}
-
-t_list	*create_node(char *stash)
+t_list	*save_stash_to_list(t_list **head, char *stash)
 {
 	t_list	*node;
+	t_list	*buffer;
 
 	node = (t_list *)malloc(sizeof(t_list));
 	if (!node)
 		return (NULL);
-	node->content = ft_str_extract(stash, BUFFER_SIZE, 0);
-	return (node);
+	node->next = NULL;
+	node->content = ft_str_extract(stash, BUFFER_SIZE);
+	if (*head == NULL)
+		*head = node;
+	else
+	{
+		buffer = *head;
+		while (buffer->next != NULL)
+		{
+			buffer = buffer->next;
+		}
+		buffer->next = node;
+	}
+	return (*head);
 }
 
 char	*get_next_line(int fd)
 {
 	static char	stash[BUFFER_SIZE + 1];
-	int			stash_len;
 	char		*line;
-	int			read_line;
 	t_list		*head;
 
 	if (fd <= 0)
 		return (NULL);
 	head = NULL;
 	line = check_stash(stash, head);
-	stash_len = ft_strlen(stash);
 	if (line != NULL)
 		return (line);
-	if (stash_len != 0)
-	{
-		head = create_node(stash);
-		if (!head)
+	if (ft_strlen(stash) != 0)
+		if (save_stash_to_list(&head, stash) == NULL)
 			return (NULL);
-	}
-	while (1)
+	while (read(fd, stash, BUFFER_SIZE) != 0)
 	{
-		read_line = read(fd, stash, BUFFER_SIZE);
-		if (read_line == 0)
-			return (process_list(head, NULL));
 		line = check_stash(stash, head);
 		if (line != NULL)
 			return (line);
-		if (head)
-			ft_lstadd_back(head, create_node(stash));
-		else
-			head = create_node(stash);
+		save_stash_to_list(&head, stash);
 	}
-	return (line);
+	return (process_list(head, NULL));
 }

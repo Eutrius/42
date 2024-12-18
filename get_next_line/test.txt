@@ -1,14 +1,4 @@
 ciao
-abcd
-bella
-iasflkj 
-asdf
-asdf
-asldkfjasdlfasjdfklasdfjasdlk
-ads
-asdasd
-asd
-
-asdfkjasdlfkasjdflkasdfjasdf
-
-
+a
+bellabll
+getnextlinegetnexline

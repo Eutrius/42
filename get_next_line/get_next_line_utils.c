@@ -17,18 +17,18 @@ size_t	ft_strlen(char *str)
 	size_t	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i] != '\0' && str[i] != '\n')
 		i++;
 	return (i);
 }
 
-char	*ft_str_extract(char *s, int end, int flag)
+char	*ft_str_extract(char *s, int end)
 {
 	char	*str;
 	int		i;
 
 	i = 0;
-	str = malloc(ft_strlen(s) + 1 + flag);
+	str = malloc(ft_strlen(s) + 1);
 	if (!str)
 		return (NULL);
 	while (i < end)
@@ -37,38 +37,19 @@ char	*ft_str_extract(char *s, int end, int flag)
 		s[i] = '\0';
 		i++;
 	}
-	if (flag)
-	{
-		str[i] = '\n';
-		i++;
-	}
 	str[i] = '\0';
 	return (str);
 }
 
-void	ft_memmove(void *dest, void *src, size_t n)
+void	move_stash(char *dest, char *src, size_t n)
 {
-	size_t			i;
-	int				to_left;
-	unsigned char	*buff_src;
-	unsigned char	*buff_dest;
+	size_t	i;
 
 	i = 0;
-	buff_src = (unsigned char *)src;
-	buff_dest = (unsigned char *)dest;
-	to_left = (buff_dest < buff_src);
 	while (i < n)
 	{
-		if (to_left)
-		{
-			buff_dest[i] = buff_src[i];
-			buff_src[i] = 0;
-		}
-		else
-		{
-			buff_dest[n - i - 1] = buff_src[n - i - 1];
-			buff_src[n - i - 1] = 0;
-		}
+		dest[i] = src[i];
+		src[i] = 0;
 		i++;
 	}
 }
@@ -130,9 +111,8 @@ char	*check_stash(char *stash, t_list *head)
 	{
 		if (stash[i] == '\n')
 		{
-			stash[i] = '\0';
-			line = ft_str_extract(stash, i, 1);
-			ft_memmove(stash, &stash[i + 1], BUFFER_SIZE - i - 1);
+			line = ft_str_extract(stash, i + 1);
+			move_stash(stash, &stash[i + 1], BUFFER_SIZE - i - 1);
 			if (head != NULL)
 			{
 				line = process_list(head, line);

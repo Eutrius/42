@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 4
 # endif
 
 # include <fcntl.h>
@@ -29,11 +29,11 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+t_list				*save_stash_to_list(t_list **head, char *stash);
 char				*get_next_line(int fd);
-t_list				*create_node(char *stash);
 char				*check_stash(char *stash, t_list *head);
-void				ft_memmove(void *dest, void *src, size_t n);
+void				move_stash(char *dest, char *src, size_t n);
 size_t				ft_strlen(char *str);
-char				*ft_str_extract(char *s, int end, int flag);
+char				*ft_str_extract(char *s, int end);
 char				*process_list(t_list *head, char *last_line);
 #endif
