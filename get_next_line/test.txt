@@ -1,4 +1,5 @@
 ciao
 a
+
 bellabll
 getnextlinegetnexline

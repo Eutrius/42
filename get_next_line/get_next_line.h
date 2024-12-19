@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4
+#  define BUFFER_SIZE 100
 # endif
 
 # include <fcntl.h>
@@ -29,11 +29,15 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-t_list				*save_stash_to_list(t_list **head, char *stash);
+char				*ft_strjoin(char *s1, char *s2);
+void				free_list(t_list *head);
+char				*ft_strldup(char *s, size_t len);
+t_list				*save_stash(t_list **head, char *stash);
+size_t				ft_strlen(char *str);
+void				move_stash(char *dest, char *src, size_t n);
 char				*get_next_line(int fd);
 char				*check_stash(char *stash, t_list *head);
-void				move_stash(char *dest, char *src, size_t n);
-size_t				ft_strlen(char *str);
-char				*ft_str_extract(char *s, int end);
+char				*str_extract(char *s, size_t end);
 char				*process_list(t_list *head, char *last_line);
+
 #endif
