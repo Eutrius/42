@@ -61,7 +61,7 @@ void	move_stash(char *dest, char *src, size_t n)
 		src[i] = '\0';
 		i++;
 	}
-	while (i <= BUFFER_SIZE)
+	while (i < BUFFER_SIZE)
 	{
 		dest[i] = '\0';
 		i++;
@@ -80,6 +80,7 @@ char	*ft_strldup(char *s, size_t len)
 	while (i < len)
 	{
 		dup[i] = s[i];
+		s[i] = '\0';
 		i++;
 	}
 	dup[i] = '\0';
@@ -101,6 +102,7 @@ char	*process_list(t_list *head, char *last_line)
 		head = head->next;
 	}
 	line = ft_strjoin(line, last_line);
+	free(last_line);
 	if (!line)
 		return (NULL);
 	return (line);

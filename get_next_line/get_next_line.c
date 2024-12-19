@@ -25,18 +25,6 @@ void	free_list(t_list *head)
 	}
 }
 
-void	clean_stash(char *stash)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < BUFFER_SIZE)
-	{
-		stash[i] = '\0';
-		i++;
-	}
-}
-
 t_list	*save_stash(t_list **head, char *stash)
 {
 	t_list	*node;
@@ -50,7 +38,6 @@ t_list	*save_stash(t_list **head, char *stash)
 	}
 	node->next = NULL;
 	node->content = ft_strldup(stash, BUFFER_SIZE);
-	clean_stash(stash);
 	if (*head == NULL)
 		*head = node;
 	else
@@ -65,23 +52,23 @@ t_list	*save_stash(t_list **head, char *stash)
 	return (*head);
 }
 
-char	*check_stash(char *stash, t_list *head)
+char	*check_stash(char *stash, t_list *head, int c)
 {
 	size_t	i;
 	char	*line;
 
 	i = 0;
-	while (i < BUFFER_SIZE)
+	while (i < BUFFER_SIZE && stash[i])
 	{
-		if (stash[i] == '\n')
+		if (stash[i] == c)
 		{
 			line = ft_strldup(stash, i + 1);
-			move_stash(stash, &stash[i + 1], BUFFER_SIZE - i - 1);
 			if (head != NULL)
 			{
 				line = process_list(head, line);
 				free_list(head);
 			}
+			move_stash(stash, &stash[i + 1], BUFFER_SIZE - i - 1);
 			return (line);
 		}
 		i++;
@@ -98,19 +85,19 @@ char	*get_next_line(int fd)
 	if (fd <= 0)
 		return (NULL);
 	head = NULL;
-	line = check_stash(stash, head);
+	line = check_stash(stash, head, '\n');
 	if (line != NULL)
 		return (line);
 	if (ft_strlen(stash) != 0)
 		if (save_stash(&head, stash) == NULL)
 			return (NULL);
-	while (read(fd, stash, BUFFER_SIZE) >= BUFFER_SIZE)
+	while (read(fd, stash, BUFFER_SIZE) == BUFFER_SIZE)
 	{
-		line = check_stash(stash, head);
+		line = check_stash(stash, head, '\n');
 		if (line != NULL)
 			return (line);
 		if (!save_stash(&head, stash))
 			free_list(head);
 	}
-	return (check_stash(stash, head));
+	return (check_stash(stash, head, '\0'));
 }

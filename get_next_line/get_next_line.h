@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
+#  define BUFFER_SIZE 1
 # endif
 
 # include <fcntl.h>
@@ -36,7 +36,7 @@ t_list				*save_stash(t_list **head, char *stash);
 size_t				ft_strlen(char *str);
 void				move_stash(char *dest, char *src, size_t n);
 char				*get_next_line(int fd);
-char				*check_stash(char *stash, t_list *head);
+char				*check_stash(char *stash, t_list *head, int c);
 char				*str_extract(char *s, size_t end);
 char				*process_list(t_list *head, char *last_line);
 

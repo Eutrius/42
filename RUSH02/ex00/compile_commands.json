@@ -1,0 +1,122 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "main.o",
+      "main.c"
+    ],
+    "directory": "/home/eutrius/42/RUSH02/ex00",
+    "file": "/home/eutrius/42/RUSH02/ex00/main.c",
+    "output": "/home/eutrius/42/RUSH02/ex00/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "parse_dict.o",
+      "parse_dict.c"
+    ],
+    "directory": "/home/eutrius/42/RUSH02/ex00",
+    "file": "/home/eutrius/42/RUSH02/ex00/parse_dict.c",
+    "output": "/home/eutrius/42/RUSH02/ex00/parse_dict.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "helper.o",
+      "helper.c"
+    ],
+    "directory": "/home/eutrius/42/RUSH02/ex00",
+    "file": "/home/eutrius/42/RUSH02/ex00/helper.c",
+    "output": "/home/eutrius/42/RUSH02/ex00/helper.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "helper2.o",
+      "helper2.c"
+    ],
+    "directory": "/home/eutrius/42/RUSH02/ex00",
+    "file": "/home/eutrius/42/RUSH02/ex00/helper2.c",
+    "output": "/home/eutrius/42/RUSH02/ex00/helper2.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "helper3.o",
+      "helper3.c"
+    ],
+    "directory": "/home/eutrius/42/RUSH02/ex00",
+    "file": "/home/eutrius/42/RUSH02/ex00/helper3.c",
+    "output": "/home/eutrius/42/RUSH02/ex00/helper3.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "helper4.o",
+      "helper4.c"
+    ],
+    "directory": "/home/eutrius/42/RUSH02/ex00",
+    "file": "/home/eutrius/42/RUSH02/ex00/helper4.c",
+    "output": "/home/eutrius/42/RUSH02/ex00/helper4.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "helper5.o",
+      "helper5.c"
+    ],
+    "directory": "/home/eutrius/42/RUSH02/ex00",
+    "file": "/home/eutrius/42/RUSH02/ex00/helper5.c",
+    "output": "/home/eutrius/42/RUSH02/ex00/helper5.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "print_number.o",
+      "print_number.c"
+    ],
+    "directory": "/home/eutrius/42/RUSH02/ex00",
+    "file": "/home/eutrius/42/RUSH02/ex00/print_number.c",
+    "output": "/home/eutrius/42/RUSH02/ex00/print_number.o"
+  }
+]

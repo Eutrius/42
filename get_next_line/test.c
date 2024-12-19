@@ -2,10 +2,21 @@
 
 int	main(void)
 {
-	int	fd;
+	int		fd;
+	char	*line;
+	int		i;
+	int		x;
 
+	x = 10;
+	i = 0;
 	fd = open("test.txt", O_RDONLY);
 	if (!fd)
 		return (0);
-	printf("%s", get_next_line(fd));
+	while (i < x)
+	{
+		line = get_next_line(fd);
+		printf("%s", line);
+		free(line);
+		i++;
+	}
 }
