@@ -7,7 +7,7 @@ int	main(void)
 	int		i;
 	int		x;
 
-	x = 10;
+	x = 11;
 	i = 0;
 	fd = open("test.txt", O_RDONLY);
 	if (!fd)
