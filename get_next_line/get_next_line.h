@@ -29,15 +29,15 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-char				*ft_strjoin(char *s1, char *s2);
-void				free_list(t_list **head);
-char				*ft_strldup(char *str, size_t len);
-int					save_stash(t_list **head, char *stash);
-size_t				ft_strlen(char *str);
-void				move_stash(char *dest, char *src, size_t n);
 char				*get_next_line(int fd);
 char				*check_stash(char *stash, t_list *head);
-char				*str_extract(char *s, size_t end);
+int					save_stash(t_list **head, char *stash);
 char				*process_list(t_list *head, char *last_line);
+void				shift_stash(char *stash, int start);
+t_list				*create_node(char *content);
+void				free_list(t_list **head);
+size_t				ft_strlen(char *str);
+char				*ft_strjoin(char *s1, char *s2);
+char				*ft_strldup(char *str, size_t len);
 
 #endif
