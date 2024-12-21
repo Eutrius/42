@@ -12,16 +12,16 @@
 
 #include "get_next_line.h"
 
-void	free_list(t_list *head)
+void	free_list(t_list **head)
 {
 	t_list	*buff;
 
-	while (head != NULL)
+	while (*head != NULL)
 	{
-		free(head->content);
-		buff = head->next;
-		free(head);
-		head = buff;
+		buff = *head;
+		*head = buff->next;
+		free(buff->content);
+		free(buff);
 	}
 }
 
@@ -49,7 +49,7 @@ int	save_stash(t_list **head, char *stash)
 	node = create_node(ft_strldup(stash, BUFFER_SIZE));
 	if (!node)
 	{
-		free_list(*head);
+		free_list(head);
 		return (-1);
 	}
 	if (*head == NULL)
@@ -78,7 +78,7 @@ char	*check_stash(char *stash, t_list *head)
 			if (head != NULL)
 			{
 				line = process_list(head, line);
-				free_list(head);
+				free_list(&head);
 			}
 			if (i != BUFFER_SIZE - 1)
 				move_stash(stash, &stash[i + 1], BUFFER_SIZE - i - 1);
@@ -94,7 +94,7 @@ char	*get_next_line(int fd)
 	static char	stash[BUFFER_SIZE];
 	char		*line;
 	t_list		*head;
-	size_t		bytes_read;
+	int			bytes_read;
 
 	if (fd <= 0)
 		return (NULL);
@@ -107,10 +107,19 @@ char	*get_next_line(int fd)
 		if (save_stash(&head, stash) == -1)
 			return (NULL);
 		bytes_read = read(fd, stash, BUFFER_SIZE);
-		if (bytes_read <= 0 && head == NULL)
+		if (bytes_read < 0)
 			return (NULL);
-		if (bytes_read >= 0 && bytes_read < BUFFER_SIZE)
-			process_list(head, "");
+		if (bytes_read == 0)
+		{
+			if (head == NULL)
+				return (NULL);
+			else
+			{
+				line = process_list(head, "");
+				free_list(&head);
+				return (line);
+			}
+		}
 	}
 }
 
@@ -193,8 +202,6 @@ char	*process_list(t_list *head, char *last_line)
 {
 	char	*line;
 
-	if (last_line == NULL || head == NULL)
-		return (NULL);
 	line = NULL;
 	while (head != NULL)
 	{
@@ -204,7 +211,8 @@ char	*process_list(t_list *head, char *last_line)
 		head = head->next;
 	}
 	line = ft_strjoin(line, last_line);
-	free(last_line);
+	if (!last_line)
+		free(last_line);
 	if (!line)
 		return (NULL);
 	return (line);
@@ -231,7 +239,7 @@ char	*get_next(int fd)
 		if (line != NULL)
 			return (line);
 		if (!save_stash(&head, stash))
-			free_list(head);
+			free_list(&head);
 	}
 	return (check_stash(stash, head));
 }

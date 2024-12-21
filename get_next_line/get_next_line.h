@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10000
+#  define BUFFER_SIZE 1
 # endif
 
 # include <fcntl.h>
@@ -30,7 +30,7 @@ typedef struct s_list
 }					t_list;
 
 char				*ft_strjoin(char *s1, char *s2);
-void				free_list(t_list *head);
+void				free_list(t_list **head);
 char				*ft_strldup(char *str, size_t len);
 int					save_stash(t_list **head, char *stash);
 size_t				ft_strlen(char *str);
