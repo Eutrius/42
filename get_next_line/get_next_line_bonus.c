@@ -47,12 +47,12 @@ char	*get_line(int fd, char **stash, char **line)
 		{
 			if (ft_strlen(*line) > 0)
 				return (*line);
-			free(*line);
-			return (NULL);
+			break ;
 		}
 	}
 	free(*stash);
 	free(*line);
+	*stash = NULL;
 	return (NULL);
 }
 
