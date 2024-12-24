@@ -1,16 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/24 19:22:05 by jyriarte          #+#    #+#             */
-/*   Updated: 2024/12/24 21:15:23 by jyriarte         ###   ########.fr       */
+/*   Created: 2024/12/24 12:45:37 by jyriarte          #+#    #+#             */
+/*   Updated: 2024/12/24 21:36:42 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	size_t			index;
+	unsigned char	*buff;
+
+	if (nmemb != 0 && size > SIZE_MAX / nmemb)
+		return (NULL);
+	buff = malloc(nmemb * size);
+	if (!buff)
+		return (NULL);
+	index = 0;
+	while (index < nmemb * size)
+	{
+		buff[index] = '\0';
+		index++;
+	}
+	return ((void *)buff);
+}
 
 size_t	ft_strlen(char *str)
 {

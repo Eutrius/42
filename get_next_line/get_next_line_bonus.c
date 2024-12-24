@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/24 19:22:02 by jyriarte          #+#    #+#             */
-/*   Updated: 2024/12/24 19:36:46 by jyriarte         ###   ########.fr       */
+/*   Created: 2024/12/24 12:45:12 by jyriarte          #+#    #+#             */
+/*   Updated: 2024/12/24 21:57:34 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
-	static char	stash[BUFFER_SIZE];
+	static char	*stashes[FD_LIMIT];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= FD_LIMIT || BUFFER_SIZE <= 0)
 		return (NULL);
 	line = NULL;
-	return (get_line(fd, &stash, &line));
+	if (!stashes[fd])
+	{
+		stashes[fd] = (char *)ft_calloc(BUFFER_SIZE, 1);
+		if (!stashes[fd])
+			return (NULL);
+	}
+	return (get_line(fd, &stashes[fd], &line));
 }
 
-char	*get_line(int fd, char (*stash)[BUFFER_SIZE], char **line)
+char	*get_line(int fd, char **stash, char **line)
 {
 	int	bytes_read;
 
@@ -41,9 +47,11 @@ char	*get_line(int fd, char (*stash)[BUFFER_SIZE], char **line)
 		{
 			if (ft_strlen(*line) > 0)
 				return (*line);
-			break ;
+			free(*line);
+			return (NULL);
 		}
 	}
+	free(*stash);
 	free(*line);
 	return (NULL);
 }
