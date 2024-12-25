@@ -15,18 +15,20 @@
 char	*get_next_line(int fd)
 {
 	static char	*stashes[FD_LIMIT];
+	char		**stash;
 	char		*line;
 
 	if (fd < 0 || fd >= FD_LIMIT || BUFFER_SIZE <= 0)
 		return (NULL);
 	line = NULL;
-	if (!stashes[fd])
+	stash = &stashes[fd];
+	if (!*stash)
 	{
-		stashes[fd] = (char *)ft_calloc(BUFFER_SIZE, 1);
-		if (!stashes[fd])
+		*stash = (char *)ft_calloc(BUFFER_SIZE, 1);
+		if (!*stash)
 			return (NULL);
 	}
-	return (get_line(fd, &stashes[fd], &line));
+	return (get_line(fd, stash, &line));
 }
 
 char	*get_line(int fd, char **stash, char **line)
@@ -45,9 +47,11 @@ char	*get_line(int fd, char **stash, char **line)
 			break ;
 		if (bytes_read == 0)
 		{
-			if (ft_strlen(*line) > 0)
-				return (*line);
-			break ;
+			if (ft_strlen(*line) == 0)
+				break ;
+			free(*stash);
+			*stash = NULL;
+			return (*line);
 		}
 	}
 	free(*stash);

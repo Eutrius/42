@@ -83,7 +83,7 @@ char	*ft_strjoin(char *str1, char *str2)
 		new_str[str1_index + str2_index] = str2[str2_index];
 		str2_index++;
 	}
-	new_str[str1_index + str2_index] = 0;
+	new_str[str1_index + str2_index] = '\0';
 	free(str1);
 	free(str2);
 	return (new_str);
