@@ -20,9 +20,8 @@
 # ifndef FD_LIMIT
 #  define FD_LIMIT 1024
 # endif
-# include <stdint.h>
-# include <stdlib.h>
-# include <unistd.h>
+
+# include <stddef.h>
 
 char	*get_next_line(int fd);
 char	*get_line(int fd, char **stash, char **line);

@@ -11,54 +11,56 @@
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
+#include <stdint.h>
+#include <stdlib.h>
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	size_t			index;
-	unsigned char	*buff;
+	size_t			i;
+	unsigned char	*buffer;
 
 	if (nmemb != 0 && size > SIZE_MAX / nmemb)
 		return (NULL);
-	buff = malloc(nmemb * size);
-	if (!buff)
+	buffer = malloc(nmemb * size);
+	if (!buffer)
 		return (NULL);
-	index = 0;
-	while (index < nmemb * size)
+	i = 0;
+	while (i < nmemb * size)
 	{
-		buff[index] = '\0';
-		index++;
+		buffer[i] = '\0';
+		i++;
 	}
-	return ((void *)buff);
+	return ((void *)buffer);
 }
 
 size_t	ft_strlen(char *str)
 {
-	size_t	index;
+	size_t	i;
 
-	index = 0;
+	i = 0;
 	if (!str)
 		return (0);
-	while (str[index] != '\0')
-		index++;
-	return (index);
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
 
 char	*ft_strndup(char *str, size_t nmemb)
 {
 	char	*duplicate;
-	size_t	index;
+	size_t	i;
 
-	index = 0;
+	i = 0;
 	duplicate = malloc(nmemb + 1);
 	if (!duplicate)
 		return (NULL);
-	while (index < nmemb)
+	while (i < nmemb)
 	{
-		duplicate[index] = str[index];
-		str[index] = '\0';
-		index++;
+		duplicate[i] = str[i];
+		str[i] = '\0';
+		i++;
 	}
-	duplicate[index] = '\0';
+	duplicate[i] = '\0';
 	return (duplicate);
 }
 

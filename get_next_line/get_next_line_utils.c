@@ -11,35 +11,36 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdlib.h>
 
 size_t	ft_strlen(char *str)
 {
-	size_t	index;
+	size_t	i;
 
-	index = 0;
+	i = 0;
 	if (!str)
 		return (0);
-	while (str[index] != '\0')
-		index++;
-	return (index);
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
 
 char	*ft_strndup(char *str, size_t nmemb)
 {
 	char	*duplicate;
-	size_t	index;
+	size_t	i;
 
-	index = 0;
+	i = 0;
 	duplicate = malloc(nmemb + 1);
 	if (!duplicate)
 		return (NULL);
-	while (index < nmemb)
+	while (i < nmemb)
 	{
-		duplicate[index] = str[index];
-		str[index] = '\0';
-		index++;
+		duplicate[i] = str[i];
+		str[i] = '\0';
+		i++;
 	}
-	duplicate[index] = '\0';
+	duplicate[i] = '\0';
 	return (duplicate);
 }
 

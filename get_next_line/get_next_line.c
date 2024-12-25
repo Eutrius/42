@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdlib.h>
+#include <unistd.h>
 
 char	*get_next_line(int fd)
 {
@@ -50,47 +52,47 @@ char	*get_line(int fd, char (*stash)[BUFFER_SIZE], char **line)
 
 size_t	check_stash(char *stash)
 {
-	size_t	index;
+	size_t	i;
 
-	index = 0;
-	while (index < BUFFER_SIZE && stash[index] != '\0')
+	i = 0;
+	while (i < BUFFER_SIZE && stash[i] != '\0')
 	{
-		if (stash[index] == '\n')
+		if (stash[i] == '\n')
 			return (1);
-		index++;
+		i++;
 	}
 	return (0);
 }
 
 char	*extract_line(char *stash)
 {
-	int		index;
+	int		i;
 	char	*line;
 
-	index = 0;
-	while (index < BUFFER_SIZE && stash[index] != '\0')
+	i = 0;
+	while (i < BUFFER_SIZE && stash[i] != '\0')
 	{
-		if (stash[index] == '\n')
+		if (stash[i] == '\n')
 		{
-			line = ft_strndup(stash, index + 1);
-			shift_stash(stash, index + 1);
+			line = ft_strndup(stash, i + 1);
+			shift_stash(stash, i + 1);
 			return (line);
 		}
-		index++;
+		i++;
 	}
-	return (ft_strndup(stash, index));
+	return (ft_strndup(stash, i));
 }
 
 void	shift_stash(char *stash, int start)
 {
-	size_t	index;
+	size_t	i;
 
-	index = 0;
+	i = 0;
 	while (start < BUFFER_SIZE && stash[start])
 	{
-		stash[index] = stash[start];
+		stash[i] = stash[start];
 		stash[start] = '\0';
-		index++;
+		i++;
 		start++;
 	}
 }

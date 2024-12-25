@@ -17,10 +17,7 @@
 #  define BUFFER_SIZE 10000000
 # endif
 
-# include <fcntl.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
+# include <stddef.h>
 
 char	*get_next_line(int fd);
 char	*get_line(int fd, char (*stash)[BUFFER_SIZE], char **line);
