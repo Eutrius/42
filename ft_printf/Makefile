@@ -6,7 +6,7 @@
 #    By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/25 13:21:22 by jyriarte          #+#    #+#              #
-#    Updated: 2024/12/25 13:58:29 by jyriarte         ###   ########.fr        #
+#    Updated: 2024/12/26 14:39:01 by jyriarte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ AR = ar rcs
 RM = rm -f
 CFLAGS = -Wall -Werror -Wextra -Iinclude -Ilibft
 
-SOURCES = src/ft_printf.c
+SOURCES = src/ft_printf.c src/ft_printf_utils.c src/main.c
 BONUS = 
 
 LIBFT_DIR = libft
@@ -40,6 +40,7 @@ bonus: $(BONUS_OBJECTS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(LIBFT_FLAG)
 
+
 all: $(NAME)
 
 clean:
@@ -50,7 +51,10 @@ fclean: clean
 	$(RM) $(NAME) 
 	$(MAKE) -C $(LIBFT_DIR) fclean
 
+test: $(NAME)
+	$(CC) $(CFLAGS) -o a.out $(SOURCES) $(LIBFT_FLAG)
+
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re test
 
