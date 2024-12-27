@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_putlchar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 22:10:54 by jyriarte          #+#    #+#             */
-/*   Updated: 2024/08/19 22:10:55 by jyriarte         ###   ########.fr       */
+/*   Created: 2024/12/27 18:18:45 by jyriarte          #+#    #+#             */
+/*   Updated: 2024/12/27 18:54:20 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_toupper(int c)
+void	ft_putlchar(int c, int *count)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c - 32);
-	return (c);
+	ft_putchar_fd(c, 1);
+	(*count)++;
 }

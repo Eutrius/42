@@ -6,16 +6,13 @@
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 16:21:42 by jyriarte          #+#    #+#             */
-/*   Updated: 2024/12/26 14:24:16 by jyriarte         ###   ########.fr       */
+/*   Updated: 2024/12/27 18:24:29 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 #include <stdarg.h>
-#include <stdio.h>
 
-void	print_format(int c, va_list args, int *count);
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;

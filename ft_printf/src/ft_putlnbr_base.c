@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_putlnbr_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 22:11:47 by jyriarte          #+#    #+#             */
-/*   Updated: 2024/08/19 22:11:54 by jyriarte         ###   ########.fr       */
+/*   Created: 2024/12/27 18:23:05 by jyriarte          #+#    #+#             */
+/*   Updated: 2024/12/27 18:23:22 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
+#include <stddef.h>
 
-int	ft_isalpha(int c)
+void	ft_putlnbr_base(unsigned long long num, char *base, int *count)
 {
-	if (c >= 'a' && c <= 'z')
-		return (1);
-	if (c >= 'A' && c <= 'Z')
-		return (1);
-	return (0);
+	size_t	base_len;
+
+	base_len = ft_strlen(base);
+	if (num >= base_len)
+		ft_putlnbr_base(num / base_len, base, count);
+	ft_putlchar(base[num % base_len], count);
 }

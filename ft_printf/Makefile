@@ -6,7 +6,7 @@
 #    By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/25 13:21:22 by jyriarte          #+#    #+#              #
-#    Updated: 2024/12/26 14:39:01 by jyriarte         ###   ########.fr        #
+#    Updated: 2024/12/27 18:57:43 by jyriarte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,45 +14,33 @@ NAME = libftprintf.a
 CC = cc
 AR = ar rcs
 RM = rm -f
-CFLAGS = -Wall -Werror -Wextra -Iinclude -Ilibft
+CFLAGS = -Wall -Werror -Wextra -Iinclude
 
-SOURCES = src/ft_printf.c src/ft_printf_utils.c src/main.c
-BONUS = 
-
-LIBFT_DIR = libft
-LIBFT = $(LIBFT_DIR)/libft.a
-LIBFT_FLAG = -L$(LIBFT_DIR) -lft
+SOURCES = src/ft_printf.c src/ft_printf_utils.c src/ft_putlchar.c src/ft_putlstr.c \
+			src/ft_putlmem.c src/ft_putlint.c src/ft_putluint.c src/ft_putlhex.c \
+			src/ft_putlnbr_base.c
+# BONUS = 
 
 OBJECTS = $(SOURCES:.c=.o)
-BONUS_OBJECTS = $(BONUS:.c=.o)
+# BONUS_OBJECTS = $(BONUS:.c=.o)
 
 
-$(NAME): $(LIBFT) $(OBJECTS)
+$(NAME): $(OBJECTS)
 	$(AR) $@ $^
 
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
-
-bonus: $(BONUS_OBJECTS)
-	$(AR) $(NAME) $^
-
+# bonus: $(BONUS_OBJECTS)
+# 	$(AR) $(NAME) $^
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@ $(LIBFT_FLAG)
-
+	$(CC) $(CFLAGS) -c $< -o $@  
 
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJECTS) $(BONUS_OBJECTS)
-	$(MAKE) -C $(LIBFT_DIR) clean
+	$(RM) $(OBJECTS) 
 
 fclean: clean
 	$(RM) $(NAME) 
-	$(MAKE) -C $(LIBFT_DIR) fclean
-
-test: $(NAME)
-	$(CC) $(CFLAGS) -o a.out $(SOURCES) $(LIBFT_FLAG)
 
 re: fclean all
 

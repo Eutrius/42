@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_putlhex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 22:09:54 by jyriarte          #+#    #+#             */
-/*   Updated: 2024/08/19 22:10:06 by jyriarte         ###   ########.fr       */
+/*   Created: 2024/12/27 18:22:42 by jyriarte          #+#    #+#             */
+/*   Updated: 2024/12/27 18:22:50 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdint.h>
-#include <stdlib.h>
+#include "ft_printf.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	ft_putlhex(unsigned int num, int is_upper, int *count)
 {
-	void	*buff;
+	unsigned long long	n;
 
-	if (nmemb != 0 && size > SIZE_MAX / nmemb)
-		return (NULL);
-	buff = malloc(nmemb * size);
-	if (!buff)
-		return (NULL);
-	ft_bzero(buff, nmemb * size);
-	return (buff);
+	n = num;
+	if (is_upper)
+		ft_putlnbr_base(n, BASE_HEX_UPPER, count);
+	else
+		ft_putlnbr_base(n, BASE_HEX_LOWER, count);
 }

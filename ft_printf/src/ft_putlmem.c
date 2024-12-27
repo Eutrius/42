@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putlmem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 22:10:32 by jyriarte          #+#    #+#             */
-/*   Updated: 2024/08/19 22:10:33 by jyriarte         ###   ########.fr       */
+/*   Created: 2024/12/27 18:18:10 by jyriarte          #+#    #+#             */
+/*   Updated: 2024/12/27 18:35:56 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
+#include "ft_printf.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void	ft_putlmem(void *mem, int *count)
 {
-	ft_putstr_fd(s, fd);
-	write(fd, "\n", 1);
+	unsigned long long	address;
+
+	if (!mem)
+	{
+		ft_putlstr("(nil)", count);
+		return ;
+	}
+	address = (unsigned long long)mem;
+	ft_putlstr("0x", count);
+	ft_putlnbr_base(address, BASE_HEX_LOWER, count);
 }
