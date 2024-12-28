@@ -6,7 +6,7 @@
 #    By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/25 13:21:22 by jyriarte          #+#    #+#              #
-#    Updated: 2024/12/27 18:57:43 by jyriarte         ###   ########.fr        #
+#    Updated: 2024/12/28 22:41:21 by jyriarte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ CFLAGS = -Wall -Werror -Wextra -Iinclude
 
 SOURCES = src/ft_printf.c src/ft_printf_utils.c src/ft_putlchar.c src/ft_putlstr.c \
 			src/ft_putlmem.c src/ft_putlint.c src/ft_putluint.c src/ft_putlhex.c \
-			src/ft_putlnbr_base.c
+			src/ft_putlnbr_base.c src/ft_print_format.c src/ft_putlnchar.c \
+			src/ft_nbrlen_base.c
 # BONUS = 
 
 OBJECTS = $(SOURCES:.c=.o)

@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putlchar.c                                      :+:      :+:    :+:   */
+/*   ft_putlnchar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/27 18:18:45 by jyriarte          #+#    #+#             */
-/*   Updated: 2024/12/29 00:32:45 by jyriarte         ###   ########.fr       */
+/*   Created: 2024/12/28 17:27:02 by jyriarte          #+#    #+#             */
+/*   Updated: 2024/12/28 17:27:26 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-void	ft_putlchar(int c, int *count, t_format *format)
+void	ft_putlnchar(int c, int num, int *count)
 {
-	if (format)
+	int	i;
+
+	i = 0;
+	while (i < num)
 	{
-		printf("hello%c%i%s", c, format->width, format->flags);
-		if (ft_strchr(format->flags, '-'))
-		{
-			ft_putlchar(c, count, NULL);
-			ft_putlnchar(' ', format->width - 1, count);
-			return ;
-		}
-		ft_putlnchar(' ', format->width - 1, count);
+		ft_putlchar(c, count, NULL);
+		i++;
 	}
-	ft_putchar_fd(c, 1);
-	(*count)++;
 }

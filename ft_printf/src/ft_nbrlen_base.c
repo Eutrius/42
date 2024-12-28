@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putlchar.c                                      :+:      :+:    :+:   */
+/*   ft_nbrlen_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/27 18:18:45 by jyriarte          #+#    #+#             */
-/*   Updated: 2024/12/29 00:32:45 by jyriarte         ###   ########.fr       */
+/*   Created: 2024/12/28 22:38:26 by jyriarte          #+#    #+#             */
+/*   Updated: 2024/12/28 22:38:39 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-void	ft_putlchar(int c, int *count, t_format *format)
+int	ft_nbrlen_base(unsigned long long nbr, char *base)
 {
-	if (format)
+	int	count;
+	int	base_len;
+
+	count = 0;
+	base_len = ft_strlen(base);
+	while (nbr > 0)
 	{
-		printf("hello%c%i%s", c, format->width, format->flags);
-		if (ft_strchr(format->flags, '-'))
-		{
-			ft_putlchar(c, count, NULL);
-			ft_putlnchar(' ', format->width - 1, count);
-			return ;
-		}
-		ft_putlnchar(' ', format->width - 1, count);
+		nbr /= base_len;
+		count++;
 	}
-	ft_putchar_fd(c, 1);
-	(*count)++;
+	return (count);
 }
