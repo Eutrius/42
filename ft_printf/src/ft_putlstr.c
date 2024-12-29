@@ -37,8 +37,10 @@ static void	ft_putlstr_formatted(char *str, int *count, t_format *format)
 {
 	int	n;
 	int	dot_flag;
+	int	minus_flag;
 
 	dot_flag = ft_strchr(format->flags, '.');
+	minus_flag = ft_strchr(format->flags, '-');
 	if (!str)
 	{
 		if (!dot_flag || (dot_flag && format->precision >= 6))
@@ -53,10 +55,10 @@ static void	ft_putlstr_formatted(char *str, int *count, t_format *format)
 		n = format->precision;
 	else
 		n = ft_strlen(str);
-	if (ft_strchr(format->flags, '-'))
+	if (!minus_flag)
 		ft_putlnchar(' ', format->width - n, count);
 	ft_putlnstr(str, n, count);
-	if (ft_strchr(format->flags, '-'))
+	if (minus_flag)
 		ft_putlnchar(' ', format->width - n, count);
 }
 

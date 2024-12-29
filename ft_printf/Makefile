@@ -6,7 +6,7 @@
 #    By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/25 13:21:22 by jyriarte          #+#    #+#              #
-#    Updated: 2024/12/28 22:41:21 by jyriarte         ###   ########.fr        #
+#    Updated: 2024/12/29 15:41:31 by jyriarte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ OBJECTS = $(SOURCES:.c=.o)
 $(NAME): $(OBJECTS)
 	$(AR) $@ $^
 
-# bonus: $(BONUS_OBJECTS)
+ bonus: all
 # 	$(AR) $(NAME) $^
 
 %.o: %.c

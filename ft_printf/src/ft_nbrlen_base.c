@@ -18,6 +18,8 @@ int	ft_nbrlen_base(unsigned long long nbr, char *base)
 	int	base_len;
 
 	count = 0;
+	if (nbr == 0)
+		return (1);
 	base_len = ft_strlen(base);
 	while (nbr > 0)
 	{

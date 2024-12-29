@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 void	print_format(const char *str, int *index, va_list args, int *count)
 {
@@ -74,11 +73,11 @@ void	print_specifier(int c, va_list args, int *count, t_format *format)
 	else if (c == 'd' || c == 'i')
 		ft_putlint(va_arg(args, int), count, format);
 	else if (c == 'u')
-		ft_putluint(va_arg(args, unsigned int), count);
+		ft_putluint(va_arg(args, unsigned int), count, format);
 	else if (c == 'x')
-		ft_putlhex(va_arg(args, unsigned int), 0, count);
+		ft_putlhex(va_arg(args, unsigned int), 0, count, format);
 	else if (c == 'X')
-		ft_putlhex(va_arg(args, unsigned int), 1, count);
+		ft_putlhex(va_arg(args, unsigned int), 1, count, format);
 	else if (c == '%')
-		ft_putlchar('%', count, format);
+		ft_putlchar('%', count, NULL);
 }

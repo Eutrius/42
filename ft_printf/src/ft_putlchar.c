@@ -17,7 +17,6 @@ void	ft_putlchar(int c, int *count, t_format *format)
 {
 	if (format)
 	{
-		printf("hello%c%i%s", c, format->width, format->flags);
 		if (ft_strchr(format->flags, '-'))
 		{
 			ft_putlchar(c, count, NULL);

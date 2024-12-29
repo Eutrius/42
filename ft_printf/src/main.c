@@ -331,23 +331,24 @@ int	test(void)
 	org = printf("Printf:    |%-5%|\n");
 	ft = ft_printf("ft_printf: |%-5%|\n");
 	test_return_values(org, ft, test_num++);
-	printf("\nTest %d: Zero padding\n", test_num);
 	org = printf("Printf:    |%05%|\n");
 	ft = ft_printf("ft_printf: |%05%|\n");
 	test_return_values(org, ft, test_num++);
 	return (0);
+	printf("\nTest %d: Zero padding\n", test_num);
 }
 
 int	main(void)
 {
+	char	*format;
+	int		count;
+	int		count2;
+	int		uint;
+
 	test();
-	/*char	*format;*/
-	/*int		count;*/
-	/*int		count2;*/
-	/*char	word;*/
-	/**/
-	/*format = "%5%\n";*/
-	/*count = printf(format);*/
-	/*count2 = ft_printf(format);*/
-	/*test_return_values(count, count2, 0);*/
+	format = "|%5%|\n";
+	uint = 0;
+	count = printf(format, uint);
+	count2 = ft_printf(format, uint);
+	test_return_values(count, count2, 0);
 }

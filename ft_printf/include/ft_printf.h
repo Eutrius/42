@@ -45,8 +45,9 @@ void		ft_putlchar(int c, int *count, t_format *format);
 void		ft_putlstr(char *str, int *count, t_format *format);
 void		ft_putlmem(void *mem, int *count, t_format *format);
 void		ft_putlint(int num, int *count, t_format *format);
-void		ft_putluint(unsigned int num, int *count);
-void		ft_putlhex(unsigned int num, int is_upper, int *count);
+void		ft_putluint(unsigned int num, int *count, t_format *format);
+void		ft_putlhex(unsigned int num, int is_upper, int *count,
+				t_format *format);
 void		ft_putlnbr_base(unsigned long long num, char *base, int *count);
 void		ft_putlnchar(int c, int num, int *count);
 int			ft_nbrlen_base(unsigned long long nbr, char *base);

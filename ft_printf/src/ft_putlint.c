@@ -77,8 +77,8 @@ static int	total_len(int num, t_format *format)
 			format->precision += 1;
 	}
 	len += ft_nbrlen_base((unsigned long long)n, BASE_DECIMAL);
-	if (n == 0 && !ft_strchr(format->flags, '.'))
-		len++;
+	if (ft_strchr(format->flags, '.') && format->precision == 0 && n == 0)
+		len--;
 	return (len);
 }
 
