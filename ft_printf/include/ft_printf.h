@@ -35,6 +35,10 @@ void		print_specifier(int c, va_list args, int *count, t_format *format);
 int			parse_format(const char *str, int *index, t_format *curr_format);
 void		reset_format(t_format *format);
 
+void		print_front_padding(int len, int *count, t_format *format);
+void		print_middle_padding(int len, int *count, t_format *format);
+void		print_back_padding(int len, int *count, t_format *format);
+
 void		ft_putchar_fd(char c, int fd);
 size_t		ft_strlen(const char *str);
 int			ft_strchr(char *str, int c);

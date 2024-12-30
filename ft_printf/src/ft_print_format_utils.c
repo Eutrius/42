@@ -26,6 +26,7 @@ void	print_front_padding(int len, int *count, t_format *format)
 		ft_putlnchar(' ', format->width - int_max(len, format->precision),
 			count);
 }
+
 void	print_middle_padding(int len, int *count, t_format *format)
 {
 	int	minus_flag;

@@ -18,8 +18,9 @@ CFLAGS = -Wall -Werror -Wextra -Iinclude
 
 SOURCES = src/ft_printf.c src/ft_printf_utils.c src/ft_putlchar.c src/ft_putlstr.c \
 			src/ft_putlmem.c src/ft_putlint.c src/ft_putluint.c src/ft_putlhex.c \
-			src/ft_putlnbr_base.c src/ft_print_format.c src/ft_putlnchar.c \
-			src/ft_nbrlen_base.c
+			src/ft_putlnbr_base.c src/ft_print_format.c src/ft_print_format_utils.c \
+			src/ft_nbrlen_base.c src/ft_putlnchar.c 
+			
 # BONUS = 
 
 OBJECTS = $(SOURCES:.c=.o)
